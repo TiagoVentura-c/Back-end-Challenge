@@ -34,16 +34,12 @@ public class ArticleController {
 
     @PostMapping
     public ResponseEntity<?> insert(@RequestBody Article article){
-        return null;
+        return ResponseEntity.ok(service.save(article));
     }
 
-    @PostMapping
+    @PostMapping("/many")
     public ResponseEntity<?> insert(@RequestBody List<Article> articles){
-
-        if(articles.size() == 1)
-            return ResponseEntity.ok(repository.save(articles.get(0)));
-        else
-            return  ResponseEntity.ok(repository.saveAll(articles));
+        return ResponseEntity.ok(repository.saveAll(articles));
     }
 
     @PutMapping("/{id}")
