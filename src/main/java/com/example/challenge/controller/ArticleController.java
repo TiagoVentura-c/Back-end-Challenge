@@ -1,5 +1,6 @@
 package com.example.challenge.controller;
 
+import com.example.challenge.exception.NegotiationException;
 import com.example.challenge.models.Article;
 import com.example.challenge.repository.ArticleRepository;
 import com.example.challenge.service.ArticleService;
@@ -8,6 +9,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/article")
@@ -29,9 +33,17 @@ public class ArticleController {
     }
 
     @PostMapping
-    public ResponseEntity<Article> insert(@RequestBody Article article){
-        Article flightSaved = service.save(article);
-        return ResponseEntity.ok(flightSaved);
+    public ResponseEntity<?> insert(@RequestBody Article article){
+        return null;
+    }
+
+    @PostMapping
+    public ResponseEntity<?> insert(@RequestBody List<Article> articles){
+
+        if(articles.size() == 1)
+            return ResponseEntity.ok(repository.save(articles.get(0)));
+        else
+            return  ResponseEntity.ok(repository.saveAll(articles));
     }
 
     @PutMapping("/{id}")
