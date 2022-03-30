@@ -5,7 +5,8 @@ services:
     image: 'docker-spring-boot-postgres:latest'
     build: ./
     environment:
-      SPRING_DATASOURCE_URL: ${DATABASE_URL}
+      SPRING_DATASOURCE_URL: postgres://sntcapggzcrzmi:40aa537c95ccc03f881d7a8478ef451a91c2b982d22e6417ce593241f0cd9562@ec2-34-231-183-74.compute-1.amazonaws.com:5432/daj03dhhvh8014
+      SPRING_JPA_HIBERNATE_DDL_AUTO: create
     ports:
       - "8080:8080"
     depends_on:
