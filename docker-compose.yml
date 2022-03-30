@@ -5,10 +5,7 @@ services:
     image: 'docker-spring-boot-postgres:latest'
     build: ./
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgresqldb:5432/spaceflight
-      SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: admin
-      SPRING_JPA_HIBERNATE_DDL_AUTO: create
+      SPRING_DATASOURCE_URL: ${DATABASE_URL}
     ports:
       - "8080:8080"
     depends_on:
